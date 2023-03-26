@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Sun Mar 26 09:44:02 2023
-
-@author: ACER
-"""
-
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
@@ -40,4 +33,8 @@ def diabetes_pred(input_parameters: model_input):
     
     prediction = diabetes_model.predict([[carb]])
     
-    return prediction[0]
+    if prediction[0] == 0:
+        return 0
+    
+    else:
+        return 1
